@@ -5,6 +5,7 @@ class BooksController < ApplicationController
   def index
     @books = Book.all
     @book = Book.new
+    @user = current_user
   end
   
   def create
@@ -28,7 +29,6 @@ class BooksController < ApplicationController
     book = Book.find(params[:id])
     book.update(book_params)
     redirect_to book_path(book.id)
-    
   end
   
   def destroy
@@ -42,4 +42,9 @@ class BooksController < ApplicationController
      params.require(:book).permit(:title, :body)
     # book_paramsの中に新規投稿フォームで入力されたデータが格納される
    end
+   
+    def user_params
+    params.require(:user).permit(:name, :profile_image,:introduction_id)
+    end
+   
 end
