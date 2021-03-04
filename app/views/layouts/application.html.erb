@@ -14,9 +14,15 @@
      <li>
        <%= link_to"logout", destroy_user_session_path, method: :delete %>
      </li>
+     
      <li>
        <%= link_to"Users", user_path(current_user)%>
      </li>
+     
+     <li>
+       <%= link_to "Home", user_path(current_user.id) %>
+     </li>
+     
     <% else %>
      <li>
        <%= link_to"sign up", new_user_registration_path %>
