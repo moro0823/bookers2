@@ -1,17 +1,19 @@
 class BooksController < ApplicationController
   def new
-    @book = Book.new
-  end
-  
-  def create
-    book = Book.new(book_params)
-    #Book.newで入力されたデータがbook_paramsに格納され、bookとして置き換える
-    book.save
-    redirect_to books_path
   end
   
   def index
     @books = Book.all
+    @book = Book.new
+  end
+  
+  def create
+    @book = Book.new(book_params)
+    #Book.newで入力されたデータがbook_paramsに格納され、@bookとして置き換える
+    @book.user_id = current_user.id
+    # bookモデルにuser_idの情報を置き換える(現在のuser_id)
+    @book.save
+    redirect_to book_path(@book.id)
   end
   
   def show
@@ -26,6 +28,7 @@ class BooksController < ApplicationController
     book = Book.find(params[:id])
     book.update(book_params)
     redirect_to book_path(book.id)
+    
   end
   
   def destroy
