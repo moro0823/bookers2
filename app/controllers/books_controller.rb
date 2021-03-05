@@ -2,7 +2,11 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
-    @book = Book.new
+    # @user = User.find(params[:id])
+    # @books = Book.all
+    # @books = @user.books
+    # @book = Book.new
+    # @book.user_id = current_user.id 
   end
   
   def create
@@ -40,4 +44,8 @@ class BooksController < ApplicationController
     # book_paramsの中に新規投稿フォームで入力されたデータが格納される
    end
    
-end
+    def user_params
+     params.require(:user).permit(:name, :profile_image,:introduction_id)
+    end
+   
+  end

@@ -11,6 +11,12 @@ class UsersController < ApplicationController
     @book.user_id = current_user.id 
   end
   
+  def index
+   @user = User.find(params[:id])
+   # @book = Book.new
+   # @book.user_id = current_user.id 
+  end
+  
   
   def edit
    @user = User.find(params[:id])
