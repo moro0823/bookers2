@@ -1,1 +1,34 @@
-<h1>テスト</h1>
+<h1>User info</h1>
+
+<div class="profile-name">
+ <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: "jpeg", fallback: "no_image.jpg" %>
+ <p>name:<%= @user.name %></p>
+ <p>introduction:<%= @user.introduction_id %></p> 
+ <% if @user.id == current_user.id %>
+  <p><%= link_to"プロフィール編集", edit_user_path(@user) %></p>
+ <% end %>
+</div>
+<!--ユーザー情報-->
+
+<h1>New book</h1>
+  <%= form_with model: @book,local: true do |f| %>
+   <h4>Title</h4>
+   <%= f.text_field :title %>
+  
+   <h4>Opinion</h4>
+   <%= f.text_area :body %>
+  
+   <%= f.submit"Create Book" %>
+  <% end %>
+<!--新規投稿フォーム-->
+
+
+<h1>Users</h1>
+<% @users.each do |user| %>
+
+<div>
+  <%= attachment_image_tag user, :profile_image, :fill, 60, 60, format: "jpeg", fallback: "no_image.jpg" %>
+  <p><%= user.name %></p>
+  <p><%= link_to"show", user_path(user) %></p>
+</div>
+<% end %>
