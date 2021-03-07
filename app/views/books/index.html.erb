@@ -22,11 +22,22 @@
   <% end %>
 
 <h1>Bookes</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Opinion</th>
+    </tr>
+    </thead>
+
 <% @books.each do |book| %>
 
-<div>
-  <%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, format: "jpeg", fallback: "no_image.jpg" %>
-  <p><%= book.title %></p>
-  <p><%= book.body %></p>
-</div>
+<tbody>
+ <tr>
+  <td><%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, format: "jpeg", fallback: "no_image.jpg" %></td>
+  <td><%= link_to book.title,book_path(book.id) %></td>
+  <td><%= book.body %></td>
+ </tr>
+</tbody>
 <% end %>
+</table
