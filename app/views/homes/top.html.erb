@@ -4,10 +4,15 @@
   </p>
  <% end %>
 
-<h1>welcome to Bookers!!</h1>
-<p>In Bookers</p>
-<p>you can share exchange your opinions,inpressions,and emotions<br>
-   about various books!</p>
+<div class="container">
+  <div class="col-lg-8 p-2">
+    <h1>welcome to <span class="fas fa-book"></span>Bookers!!</h1>
+     <p>In<span class="fas fa-book"></span>Bookers</p>
+     <p>you can share exchange your opinions,inpressions,and emotions<br>
+        about various books!</p>
   
-  <%=link_to"Log in", user_session_path %> <br>
-  <%=link_to"Sign up", new_user_registration_path %> 
+  <p><%=link_to"Log in", user_session_path,class: "btn btn-primary btn-lg btn-block" %></p>
+  <p><%=link_to"Sign up", new_user_registration_path,class: "btn btn-success btn-lg btn-block"  %> </p>
+  </div>
+  <div class="col-lg-4"></div>
+</div>

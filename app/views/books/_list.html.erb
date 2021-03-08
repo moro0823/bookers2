@@ -1,22 +1,38 @@
 <% if flash[:notice] %>
   <p id="notice">
-   <%="Welcome! Youhave "+ flash[:notice] %>
+   <%="Welcome! You have "+ flash[:notice] %>
   </p>
  <% end %>
 
 <h1>User info</h1>
 
 <div class="profile-name">
- <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: "jpeg", fallback: "no_image.jpg" %>
- <p>name:<%= user.name %></p>
- <p>introduction:<%= user.introduction %></p> 
+ <div class="profile-image" style="padding:10px;">
+   <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: "jpeg", fallback: "no_image.jpg" %>
+ </div>
+ <div class="border-top" style="padding:10px;">
+  <p>name <%= user.name %></p>
+ </div>
+ <div class="border-top" style="padding:10px;">
+   <p>introduction <%= user.introduction %></p> 
+ </div>
  <% if user.id == current_user.id %>
-  <p><%= link_to"プロフィール編集", edit_user_path(user) %></p>
+  <%= link_to edit_user_path(user),class: "btn btn-danger text-white", method: :get do %>
+   <i class="fas fa-user-cog"></i>
+   <% end %>
   <% else %>
-  <p><%= link_to"プロフィール編集",user_path(current_user) %></p>
+  <%= link_to user_path(current_user),class: "btn btn-danger text-white", method: :get do %>
+   <i class="fas fa-user-cog"></i>
+   <% end %>
  <% end %>
 </div>
 <!--ユーザー情報-->
+
+<% if @book.errors.any? %>
+ <%= @book.errors.count %>件のエラーが発生しました
+ <%= @book.errors.full_messages.each do |message| %>
+    <% end %>
+   <% end %>
 
 <h1>New book</h1>
   <%= form_with model:@book,local: true do |f| %>
@@ -26,6 +42,6 @@
    <h4>Opinion</h4>
    <%= f.text_area :body %>
   
-   <%= f.submit"Create Book" %>
+   <p><%= f.submit"Create Book",class: "btn btn-success" %></p>
   <% end %>
 <!--新規投稿フォーム-->
