@@ -4,23 +4,24 @@
  <%= @user.errors.full_messages.each do |message| %>
     <% end %>
    <% end %>
-   
- <div class="container">
-  <h1>User info</h1>   
-   <%= form_with model:@user, local:true do|f| %>
-  <div class="Name">
-   <label for="inputName">Name</label><br>
-   <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前" %>
-  </div>
-  <div class="Image">
-   <label for="inputImage">Image</label><br>
+
+ <div class="row">
+  <div class="col-md-6 col-md-offset-3">
+     <h1>User info</h1>
+      <%= form_with model:@user, local:true do|f| %>
+     <div class="Name">
+      <label for="inputName">Name</label><br>
+      <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前" %>
+     </div>
+     <div class="Image">
+      <label for="inputImage">Image</label><br>
    <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+      </div>
+     <div class="introduction">
+      <label for="inputIntroduction">introduction</label><br>
+       <%= f.text_area :introduction, autofocus: true, id:"inputIntroduction", placeholder:"自己紹介文" %>
+     </div>
+     <%= f.submit"Update User",class: "btn btn-secondary" %>
+    <% end %>
   </div>
-  <div class="introduction">
-   <label for="inputIntroduction">introduction</label><br>
-    <%= f.text_area :introduction, autofocus: true, id:"inputIntroduction", placeholder:"自己紹介文" %>
-  </div>
-  <%= f.submit"Update User",class: "btn btn-secondary" %>
- <% end %>
-  
  </div>
