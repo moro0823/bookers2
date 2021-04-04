@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   private
    def book_params
     params.require(:book).permit(:title, :body)
-    book_paramsの中に新規投稿フォームで入力されたデータが格納される
+    # book_paramsの中に新規投稿フォームで入力されたデータが格納される
    end
 
     def user_params

@@ -18,11 +18,11 @@
  </div>
 
  <div class="border-top" style="padding:10px;">
-  <td>フォロー数 <%= user.follower.count %></td>
+  <td>follower <%= link_to "#{user.follower.count}",user_follow_path %></td>
  </div>
 
  <div class="border-top" style="padding:10px;">
-  <td>フォローワー数 <%= user.followed.count %></td>
+  <td>followed <%= link_to "#{user.followed.count}",user_follow_path %></td>
  </div>
 
  <% if user.id == current_user.id %>

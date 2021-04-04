@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :users,only:[:show, :edit, :index, :update]
   post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
   post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
+  get 'user/follow' => 'relationships#index'
   get "home/about" => "homes#about"
   root to: "homes#top"
 end
