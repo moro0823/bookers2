@@ -25,11 +25,13 @@
   <td>フォローワー数 <%= user.followed.count %></td>
  </div>
 
- <% if user.id == current_user.id %>
-  <%= link_to "",edit_user_path(user),class: "btn btn-danger text-white fas fa-user-cog" %>
+ <td>
+  <% if current_user.following?(user) %>
+   <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST,class: "btn btn-danger text-white fas fa-user-cog" %>
   <% else %>
-  <%= link_to "",edit_user_path(user),class: "btn btn-danger text-white fas fa-user-cog" %>
- <% end %>
+    <%= link_to 'フォローする', follow_path(user.id), method: :POST, class: "btn btn-danger text-white fas fa-user-cog" %>
+  <% end %>
+ </td>
 </div>
 <!--ユーザー情報-->
 
