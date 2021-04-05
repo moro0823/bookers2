@@ -36,10 +36,12 @@
  </div>
 
  <td>
-  <% if current_user.following?(@user) %>
-   <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :POST,class: "btn btn-primary text-white" %>
-  <% else %>
-   <%= link_to 'フォローする', follow_path(@user.id), method: :POST,class: "btn btn-success text-white" %>
+  <% if @user != current_user %>
+   <% if current_user.following?(@user) %>
+    <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :POST,class: "btn btn-primary text-white" %>
+   <% else %>
+    <%= link_to 'フォローする', follow_path(@user.id), method: :POST,class: "btn btn-success text-white" %>
+   <% end %>
   <% end %>
  </td>
 </div>
