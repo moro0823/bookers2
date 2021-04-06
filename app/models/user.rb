@@ -44,8 +44,13 @@ class User < ApplicationRecord
       @user = User.all
     end
   end
+  
+  def favorited_by?(book_id)
+    favorites.where(book_id: book_id).exists?
+  end
 
 
   validates :name,uniqueness: {message: "その名前は使用できません"}, length: {minimum: 2, maximum: 20 }
   validates :introduction,length: {maximum: 50 }
+  
 end
