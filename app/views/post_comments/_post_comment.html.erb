@@ -5,7 +5,7 @@
       <p><%= post_comment.comment %></p>
       <% if post_comment.user == current_user %>
       <div class="comment-delete">
-       <%= link_to"Delite",book_post_comment_path(post_comment.book,post_comment), method: :delete %>
+       <%= link_to"Delite",book_post_comment_path(post_comment.book,post_comment), method: :delete, remote: true %>
       </div>
       <% end %>
      <% end %>
