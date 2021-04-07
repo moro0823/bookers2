@@ -1,0 +1,2 @@
+$('#post_comment_<%= @book_detail.id %>').html("<%= j(render 'post_comments/post_comment',post_comment: @post_comment,book_detail: @book_detail) %>");
+$('.js-form')[0].reset();

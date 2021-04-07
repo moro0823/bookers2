@@ -17,41 +17,20 @@
          <td><%= link_to"Edit", edit_book_path(@book_detail.id),class: "btn btn-success btn-sm" %></td>
          <td><%= link_to"Destroy", book_path(@book_detail.id), method: :delete, "data-confirm" => "本当に消しますか？" ,class: "btn btn-danger btn-sm" %></td>
          <% end %>
-         <td>
-           <p>コメント件数 <%= @book_detail.post_comments.count %></p>
-           <% @book_detail.post_comments.each do |post_comment| %>
-            <p><%= post_comment.user.name %></p>
-            <p><%= post_comment.created_at.strftime("%Y/%m/%d") %></p>
-            <p><%= post_comment.comment %></p>
-            <% if post_comment.user == current_user %>
-            <div class="comment-delete">
-              <%= link_to"Delite",book_post_comment_path(post_comment.book,post_comment), method: :delete %>
-            </div>
-            <% end %>
-           <% end %>
+         <td id="book_<%= @book_detail.id %>">
+          <%= render 'favorites/favorite-btn', book: @book_detail %>
          </td>
-         <td>
-           <% if @book_detail.favorited_by?(current_user) %>
-           <p>
-             <%= link_to book_favorites_path(@book_detail),method: :delete do %>
-              ❤<%= @book_detail.favorites.count %>いいね
-              <% end %>
-           </p>
-           <% else %>
-           <p>
-             <%= link_to book_favorites_path(@book_detail),method: :post do %>
-              🤍<%= @book_detail.favorites.count %>いいね
-              <% end %>
-           </p>
-           <% end %>
-         </td>
-         <td>
-            <%= form_with(model:[@book_detail, @post_comment],local: true) do |f| %>
-             <%= f.text_area :comment, rows:"5",placeholder:"コメントをここに" %>
-             <%= f.submit"送信する" %>
-             <% end %>
-         </td>
-
 　　　 </tbody>
 　　　</table>
+　　　
+　　　<div>
+        <%= form_with(model:[@book_detail, @post_comment],class: 'js-form') do |f| %>
+        <%= f.text_area :comment, rows:"5",placeholder:"コメントをここに" %>
+        <%= f.submit"送信する" %>
+        <% end %>
+       </div>
+         
+       <div id="post_comment_<%= @book_detail.id %>">
+         <%= render "post_comments/post_comment", post_comment: @post_comment, book_detail: @book_detail %>
+        </div>
 　　</div>
