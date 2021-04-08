@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
+  get 'chats/show'
   get 'search/search'
   devise_for :users, :controllers => {
    :registrations => 'users/registrations',
    :sessions => 'users/sessions',
    :passwords => 'users/passwords'
   }
+  
+  get 'chat/:id' => 'chats#show', as: 'chat'
+  resources :chats, only: [:create]
   
   resources :books do
     resource :favorites, only: [:create, :destroy]

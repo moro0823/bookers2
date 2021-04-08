@@ -1,10 +1,3 @@
-<% if flash[:notice] %>
-  <p id="notice">
-   <%=flash[:notice] %>
-  </p>
- <% end %>
-
-
 <div class="container">
   <div class="row">
     <div class="col-md-3">
@@ -35,7 +28,7 @@
   <td>followed <%= link_to "#{@user.followed.count}",user_follow_path %></td>
  </div>
 
- <td>
+ <div>
   <% if @user != current_user %>
    <% if current_user.following?(@user) %>
     <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :POST,class: "btn btn-primary text-white" %>
@@ -43,7 +36,12 @@
     <%= link_to 'フォローする', follow_path(@user.id), method: :POST,class: "btn btn-success text-white" %>
    <% end %>
   <% end %>
- </td>
+ </div>
+ <div>
+  <% if current_user != @user %>
+    <%= link_to 'チャットする', chat_path(@user.id) %>
+  <% end %>
+ </div>
 </div>
 <!--ユーザー情報-->
 
